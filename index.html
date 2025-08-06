@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Sign Language Translator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1640029074/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1620248257/drawing_utils.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sign Language Translator</h1>
+            <p>Real-time ASL to Speech Translation</p>
+        </header>
+
+        <div class="main-content">
+            <div class="video-section">
+                <div class="video-container">
+                    <video id="webcam" autoplay muted></video>
+                    <canvas id="output-canvas"></canvas>
+                </div>
+                <div class="controls">
+                    <button id="start-btn" class="btn primary">Start Camera</button>
+                    <button id="stop-btn" class="btn secondary" disabled>Stop Camera</button>
+                    <button id="reset-btn" class="btn tertiary">Reset</button>
+                </div>
+            </div>
+
+            <div class="translation-section">
+                <div class="translation-display">
+                    <h3>Detected Signs</h3>
+                    <div id="sign-display" class="sign-display">No signs detected</div>
+                </div>
+                
+                <div class="text-output">
+                    <h3>Translated Text</h3>
+                    <div id="text-output" class="text-output">Ready to translate...</div>
+                </div>
+
+                <div class="audio-controls">
+                    <button id="speak-btn" class="btn primary" disabled>Speak Translation</button>
+                    <label for="voice-select">Voice:</label>
+                    <select id="voice-select"></select>
+                </div>
+
+                <div class="sign-info">
+                    <h3>Current Sign Info</h3>
+                    <div id="sign-info" class="sign-info-display">
+                        <p>Confidence: <span id="confidence">0%</span></p>
+                        <p>Hand Position: <span id="hand-position">None</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="signs-panel">
+            <h3>Common Signs</h3>
+            <div id="signs-grid" class="signs-grid">
+                <!-- Signs will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="sign-dictionary.js"></script>
+    <script src="hand-tracker.js"></script>
+    <script src="sign-translator.js"></script>
+</body>
+</html>
